@@ -1,17 +1,98 @@
 ---
-import "../styles/global.css";
+import Header from "@/components/Header.astro";
+
+// import "@fontsource/poppins/400.css";
+// import "@fontsource/poppins/500.css";
+// import "@fontsource/poppins/600.css";
+// import "@fontsource/poppins/700.css";
+// import "@fontsource/poppins/900.css";
+// import BackToTop from "@/components/BackToTop.astro"
+
+import "@/styles/global.css";
+
+interface Props {
+  title?: string;
+}
+
+const {
+  title = "Inicio - Página de aficionado del Club Deportivo Guadalajara",
+} = Astro.props;
+const preloadImg = "/images/hero.webp";
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preload" as="image" href={preloadImg} />
+    <title>{title}</title>
+    <meta
+      name="description"
+      content="Sitio web realizado por aficionados del Club Deportivo Guadalajara, conocido como Chivas. Aquí encontrarás noticias, información y recursos relacionados con el equipo."
+    />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Astro Basics</title>
+    <meta property="og:title" content="Un chivahermano más" />
+    <meta
+      property="og:description"
+      content="Sitio web realizado por aficionados del Club Deportivo Guadalajara, conocido como Chivas. Aquí encontrarás noticias, información y recursos relacionados con el equipo."
+    />
+    <meta property="og:image" content="/images/hero.webp" />
+    <meta property="og:url" content="https://www.unchivahermanomas.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Un Chivahermano más" />
+    <meta name="twitter:card" content="photo" />
+    <meta name="twitter:title" content="Un Chivahermano más" />
+    <meta
+      name="twitter:description"
+      content="Sitio web realizado por aficionados del Club Deportivo Guadalajara, conocido como Chivas. Aquí encontrarás noticias, información y recursos relacionados con el equipo."
+    />
+    <meta name="twitter:image" content="/images/hero.webp" />
+    <meta name="twitter:url" content="https://www.unchivahermanomas.com/" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Event",
+        "name": "Un Chivahermano más",
+        "description": "Sitio web realizado por aficionados del Club Deportivo Guadalajara, conocido como Chivas. Aquí encontrarás noticias, información y recursos relacionados con el equipo.",
+        "image": "https://www.unchivahermanomas.com/images/hero.webp",
+        "startDate": "2025-06-14T10:00:00+02:00",
+        "endDate": "2025-06-15T20:00:00+02:00",
+        "eventStatus": "https://schema.org/EventScheduled",
+        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+        "location": {
+          "@type": "Place",
+          "name": "Aquópolis Madrid",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Madrid",
+            "addressRegion": "Madrid",
+            "addressCountry": "ES"
+          }
+        },
+        "performer": {
+          "@type": "Person",
+          "name": "Un Chivahermano más"
+        },
+        "organizer": {
+          "@type": "Organization",
+          "name": "Un Chivahermano más",
+          "url": "https://www.unchivahermanomas.com"
+        },
+        "offers": {
+          "@type": "Offer",
+          "url": "https://www.unchivahermanomas.com",
+          "availability": "https://schema.org/InStock",
+          "priceCurrency": "EUR"
+        }
+      }
+    </script>
   </head>
-  <body>
+
+  <body class="bg-primary w-screen overflow-x-hidden">
+    <Header />
     <slot />
+    <!-- <BackToTop /> -->
   </body>
 </html>

@@ -1,0 +1,258 @@
+---
+import HeaderLink, { Device, Target } from "@/components/HeaderLink.astro";
+---
+
+<header class="animate-blur-header fixed top-0 z-60 w-screen">
+  <nav
+    class="mx-auto flex max-w-6xl items-center justify-between px-4 py-6 pb-0 uppercase lg:px-8"
+    aria-label="Global"
+  >
+    <div class="flex">
+      <div class="hidden lg:flex lg:gap-x-12">
+        <HeaderLink text="Inicio" href="/#info" device={Device.DESKTOP} />
+        <HeaderLink text="Noticias" href="/#faq" device={Device.DESKTOP} />
+        <HeaderLink
+          text="Jugadores"
+          href="/#jugadores"
+          device={Device.DESKTOP}
+        />
+      </div>
+      <div class="flex lg:hidden">
+        <button
+          type="button"
+          id="open-menu-button"
+          class="-m-2.5 inline-flex cursor-pointer items-center justify-center rounded-md p-2.5 text-white transition-all duration-300 will-change-transform hover:scale-150"
+        >
+          <span class="sr-only">Abrir Menú Principal</span>
+          <svg
+            class="size-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            aria-hidden="true"
+            data-slot="icon"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+  <dialog
+    class="bg-primary z-50 max-h-[80vh] w-full max-w-full translate-x-0 transition-discrete duration-300 lg:hidden starting:-translate-x-full [&:not([open])]:-translate-x-full"
+    id="mobile-menu"
+    role="dialog"
+    aria-modal="true"
+  >
+    <div class="z-10 overflow-y-auto px-6 py-6">
+      <div class="flex items-center justify-between">
+        <div class="flex flex-1">
+          <button
+            type="button"
+            id="close-menu-button"
+            class="-m-2.5 cursor-pointer p-2.5 text-white transition-all duration-300 ease-in will-change-transform hover:scale-150"
+          >
+            <span class="sr-only">Cerrar Menú</span>
+            <svg
+              class="size-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              aria-hidden="true"
+              data-slot="icon"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M6 18 18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="mt-6 space-y-2">
+        <HeaderLink text="Inicio" href="/#info" device={Device.MOBILE} />
+        <HeaderLink text="Noticias" href="/#faq" device={Device.MOBILE} />
+        <HeaderLink text="Jugadores" href="/#faq" device={Device.MOBILE} />
+      </div>
+    </div>
+  </dialog>
+</header>
+
+<div id="backdrop"></div>
+
+<div data-target class="absolute top-[150px]"></div>
+
+<script>
+  // Get the menu elements
+  const mobileMenu = document.getElementById(
+    "mobile-menu"
+  ) as HTMLDialogElement;
+  const openMenuButton = document.getElementById("open-menu-button");
+  const closeMenuButton = document.getElementById("close-menu-button");
+  const mobileItems = mobileMenu.querySelectorAll("a");
+  const backdrop = document.getElementById("backdrop");
+
+  const toggleMenu = () => {
+    mobileMenu.open ? mobileMenu.close() : mobileMenu.showModal();
+
+    if (mobileMenu.open) {
+      backdrop?.classList.add("visible");
+    } else {
+      backdrop?.classList.remove("visible");
+    }
+  };
+
+  // Add event listener to open menu button
+  openMenuButton?.addEventListener("click", toggleMenu);
+
+  // Add event listener to close menu button
+  closeMenuButton?.addEventListener("click", toggleMenu);
+
+  document.addEventListener("click", (event) => {
+    const isClickInsideMenu = mobileMenu.contains(event.target as Node);
+    const isClickInsideButton = openMenuButton?.contains(event.target as Node);
+
+    if (isClickInsideMenu && !isClickInsideButton) {
+      mobileMenu.close();
+      backdrop?.classList.remove("visible");
+    }
+  });
+
+  mobileItems?.forEach((item) => item.addEventListener("click", toggleMenu));
+
+  const target = document.querySelector("[data-target]");
+  const header = document.querySelector("header");
+  const ticketsButton = document.getElementById("tickets-button");
+
+  const handleIntersection = ([entry]: IntersectionObserverEntry[]) => {
+    if (entry.isIntersecting) {
+      ticketsButton?.classList.add(
+        "from-[#ff0695]",
+        "via-[#ff99d1]",
+        "to-[#ff0695]",
+        "shadow-[#ff0695]/30",
+        "hover:shadow-[#ff0695]/40"
+      );
+      ticketsButton?.classList.remove(
+        "from-[#383acf]",
+        "via-[#8688ff]",
+        "to-[#383acf]",
+        "shadow-[#383acf]/30",
+        "hover:shadow-[#383acf]/40"
+      );
+      header?.classList.remove("end-state");
+    } else {
+      ticketsButton?.classList.remove(
+        "from-[#ff0695]",
+        "via-[#ff99d1]",
+        "to-[#ff0695]",
+        "shadow-[#ff0695]/30",
+        "hover:shadow-[#ff0695]/40"
+      );
+      ticketsButton?.classList.add(
+        "from-[#383acf]",
+        "via-[#8688ff]",
+        "to-[#383acf]",
+        "shadow-[#383acf]/30",
+        "hover:shadow-[#383acf]/40"
+      );
+      header?.classList.add("end-state");
+    }
+  };
+
+  const createObserver = (
+    target: Element,
+    callback: IntersectionObserverCallback
+  ) => {
+    const observer = new IntersectionObserver(callback, { threshold: 0.5 });
+    observer.observe(target);
+  };
+
+  if (target) {
+    createObserver(target, handleIntersection);
+  }
+</script>
+
+<style>
+  @reference "../styles/global.css";
+
+  header {
+    @apply border-b border-b-transparent;
+    transition:
+      background 0.3s,
+      padding-bottom 0.2s,
+      border-bottom-color 0.1s;
+  }
+
+  .end-state {
+    @apply bg-primary/60 border-b-[#b50066] pb-6 backdrop-blur-md;
+  }
+
+  #backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease-in-out;
+    z-index: 100;
+  }
+
+  .tickets-button {
+    background-size: 200% 100%;
+    animation: shimmer 3s linear infinite;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .tickets-button::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+      to right,
+      transparent,
+      rgba(255, 255, 255, 0.3),
+      transparent
+    );
+    transform: rotate(30deg);
+    animation: shine 3s linear infinite;
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: 0% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+
+  @keyframes shine {
+    0% {
+      transform: translateX(-100%) rotate(30deg);
+    }
+    100% {
+      transform: translateX(100%) rotate(30deg);
+    }
+  }
+
+  #backdrop.visible {
+    opacity: 1;
+  }
+
+  dialog::backdrop {
+    display: none;
+  }
+</style>
