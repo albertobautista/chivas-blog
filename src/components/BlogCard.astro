@@ -1,0 +1,54 @@
+---
+import type { Blog } from "@/types/blog";
+import { Image } from "astro:assets";
+
+const {
+  title,
+  description,
+  date = "13/03/2025",
+  type,
+  image,
+} = Astro.props as Blog;
+---
+
+<div class="relative lg:col-span-2">
+  <div
+    class="relative flex flex-col h-full min-h-[340px] bg-white overflow-hidden"
+  >
+    <div class="relative w-full overflow-hidden">
+      <Image
+        class="relative h-full w-full object-cover object-center [mask-image:linear-gradient(to_bottom,black_80%,transparent_100%)]"
+        src={image}
+        alt="Imagen de los toboganes en Aquopolis"
+        width={600}
+        height={513}
+      />
+      {
+        type && (
+          <span class="absolute px-6 py-2 text-xs font-semibold text-white uppercase shadow-md bottom-2 bg-primary">
+            {type}
+          </span>
+        )
+      }
+    </div>
+    <div class="flex flex-col justify-between flex-grow p-4 pt-4 sm:p-4">
+      <div>
+        <h3 class="text-lg font-semibold text-center text-primary lg:text-left">
+          {title}
+        </h3>
+        <p
+          class="mx-auto mt-2 max-w-[50ch] text-center text-sm text-gray-600 sm:text-sm/6 lg:mx-0 lg:text-left"
+        >
+          {description}
+        </p>
+      </div>
+      <p class="mt-4 text-xs text-right text-gray-500 font-extralight">
+        {date}
+      </p>
+    </div>
+  </div>
+  <div
+    class="pointer-events-none absolute inset-px rounded-lg shadow-sm ring-1 ring-black/5 lg:rounded-tr-[2rem] lg:rounded-br-[2rem]"
+  >
+  </div>
+</div>

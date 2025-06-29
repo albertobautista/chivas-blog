@@ -2,15 +2,15 @@
 import HeaderLink, { Device, Target } from "@/components/HeaderLink.astro";
 ---
 
-<header class="animate-blur-header fixed top-0 z-60 w-screen">
+<header class="fixed top-0 w-screen animate-blur-header z-60">
   <nav
-    class="mx-auto flex max-w-6xl items-center justify-between px-4 py-6 pb-0 uppercase lg:px-8"
+    class="flex items-center justify-between max-w-6xl px-4 py-6 pb-0 mx-auto uppercase lg:px-8"
     aria-label="Global"
   >
     <div class="flex">
       <div class="hidden lg:flex lg:gap-x-12">
-        <HeaderLink text="Inicio" href="/#info" device={Device.DESKTOP} />
-        <HeaderLink text="Noticias" href="/#faq" device={Device.DESKTOP} />
+        <HeaderLink text="Inicio" href="/#hero" device={Device.DESKTOP} />
+        <HeaderLink text="Noticias" href="/#blog" device={Device.DESKTOP} />
         <HeaderLink
           text="Jugadores"
           href="/#jugadores"
@@ -48,7 +48,7 @@ import HeaderLink, { Device, Target } from "@/components/HeaderLink.astro";
     role="dialog"
     aria-modal="true"
   >
-    <div class="z-10 overflow-y-auto px-6 py-6">
+    <div class="z-10 px-6 py-6 overflow-y-auto">
       <div class="flex items-center justify-between">
         <div class="flex flex-1">
           <button
@@ -75,8 +75,8 @@ import HeaderLink, { Device, Target } from "@/components/HeaderLink.astro";
         </div>
       </div>
       <div class="mt-6 space-y-2">
-        <HeaderLink text="Inicio" href="/#info" device={Device.MOBILE} />
-        <HeaderLink text="Noticias" href="/#faq" device={Device.MOBILE} />
+        <HeaderLink text="Inicio" href="/#hero" device={Device.MOBILE} />
+        <HeaderLink text="Noticias" href="/#blog" device={Device.MOBILE} />
         <HeaderLink text="Jugadores" href="/#faq" device={Device.MOBILE} />
       </div>
     </div>

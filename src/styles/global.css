@@ -40,9 +40,9 @@
   }
 }
 
-@layer {
+/* @layer {
   ::-webkit-scrollbar {
-    width: 8px;
+    width: 15px;
   }
 
   ::-webkit-scrollbar-track {
@@ -52,7 +52,7 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    background-color: #ff0593a8;
+    background-color: #316767;
     border: 1px solid #fff;
     border-radius: 3px;
   }
@@ -60,7 +60,7 @@
   ::-webkit-scrollbar-thumb:hover {
     background-color: var(--color-primary);
   }
-}
+} */
 
 @font-face {
   font-family: "Amertha";
