@@ -1,20 +1,13 @@
 ---
 import BlogCard from "@/components/BlogCard.astro";
 import BubbleBackground from "@/components/BubbleBackground.astro";
+import SectionTitle from "@/components/SectionTitle.astro";
 import { blogEntries } from "@/content/blog";
 ---
 
 <section id="blog" class="relative">
   <div class="px-6 pt-12 pb-24 mx-auto max-w-7xl lg:px-8">
-    <span class="inline-block text-left text-red">
-      <span class="relative inline-block magic">
-        <span
-          class="text-4xl font-semibold tracking-tight text-center uppercase magic-text text-pretty sm:text-4xl lg:text-left"
-          >Últimos posts</span
-        >
-      </span>
-    </span>
-
+    <SectionTitle title="Últimos Posts" />
     <div>
       <div
         class="view-animate-[--subjectReveal] animate-zoom-in animate-range-[entry_0%_cover_20%] grid scroll-mt-[31rem] grid-cols-1 sm:grid-cols-2 gap-8 pt-10 sm:mt-4 md:scroll-mt-[34rem] lg:scroll-mt-[26rem] lg:grid-cols-6"
@@ -36,26 +29,3 @@ import { blogEntries } from "@/content/blog";
     </div>
   </div>
 </section>
-
-<style>
-  /* letter animation START  */
-  .magic-star {
-    --size: clamp(20px, 1.5vw, 30px);
-    animation: scale 700ms ease forwards;
-    display: block;
-    height: var(--size);
-    left: var(--star-left);
-    position: absolute;
-    top: var(--star-top);
-    width: var(--size);
-  }
-
-  .magic > .magic-text {
-    animation: background-pan 4s linear infinite;
-    background: linear-gradient(to right, #c00000, #ffffff, #c00000, #c00000);
-    background-size: 200%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    white-space: nowrap;
-  }
-</style>

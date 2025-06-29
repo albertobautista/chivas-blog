@@ -1,0 +1,12 @@
+---
+import MatchesList from "@/components/MatchesList.astro";
+import SectionTitle from "@/components/SectionTitle.astro";
+import { matches } from "@/content/schedule";
+---
+
+<section id="blog" class="relative">
+  <div class="px-6 pb-24 mx-auto max-w-7xl lg:px-8">
+    <SectionTitle title="Próximos partidos" color="#383acf" />
+    <MatchesList matches={matches} />
+  </div>
+</section>
