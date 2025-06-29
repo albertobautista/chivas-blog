@@ -1,0 +1,65 @@
+---
+const bubbles = Array.from({ length: 80 }, (_, i) => ({
+  id: i + 1,
+  size: `${Math.random() * 30 + 20}px`,
+  left: `${Math.random() * 95}%`,
+  top: `${Math.random() * 95}%`, // ← Aquí está la clave: los balones aparecen distribuidos verticalmente
+  delay: `${Math.random() * 3}s`,
+  duration: `${Math.random() * 3 + 2}s`,
+}));
+
+const instanceId = Math.random().toString(36).substring(2, 9);
+---
+
+<style>
+  .football {
+    @apply absolute bg-contain bg-center bg-no-repeat;
+    will-change: transform, opacity;
+    opacity: 0;
+    contain: strict;
+    pointer-events: none;
+  }
+
+  @keyframes bubbles {
+    0% {
+      transform: translateY(0);
+      opacity: 0;
+    }
+
+    10% {
+      opacity: 1;
+    }
+
+    50% {
+      transform: translateY(-50px);
+      opacity: 0.7;
+    }
+
+    100% {
+      transform: translateY(-300px);
+      opacity: 0;
+    }
+  }
+</style>
+
+<div
+  class="absolute inset-0 z-0 w-full h-full overflow-hidden pointer-events-none"
+  data-id={instanceId}
+>
+  {
+    bubbles.map(({ size, left, top, duration, delay }, i) => (
+      <div
+        class="football"
+        style={`
+          width: ${size};
+          height: ${size};
+          left: ${left};
+          top: ${top};
+          background-image: url('/images/icons/chiva.png');
+          animation: bubbles ${duration} linear infinite ${delay};
+        `}
+        key={`ball-${i}`}
+      />
+    ))
+  }
+</div>
