@@ -1,9 +1,9 @@
 ---
-const bubbles = Array.from({ length: 80 }, (_, i) => ({
+const bubbles = Array.from({ length: 50 }, (_, i) => ({
   id: i + 1,
   size: `${Math.random() * 30 + 20}px`,
   left: `${Math.random() * 95}%`,
-  top: `${Math.random() * 95}%`, // ← Aquí está la clave: los balones aparecen distribuidos verticalmente
+  top: `${Math.random() * 95}%`, //
   delay: `${Math.random() * 3}s`,
   duration: `${Math.random() * 3 + 2}s`,
 }));
