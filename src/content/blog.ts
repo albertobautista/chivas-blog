@@ -2,20 +2,13 @@ import type { Blog } from "@/types/blog";
 
 export const blogEntries: Blog[] = [
   {
-    title: "Chivas vs América: El Clásico Nacional",
-    description: "Un análisis del partido más esperado del fútbol mexicano.",
-    date: "28/05/2025",
-    image: "/images/blog/chivas-vs-america.webp",
-    slug: "/blog/chivas-vs-america",
-    type: "partidos",
-  },
-  {
-    title: "La historia de Chivas",
+    title: "Chivas vs Mineros: Final Copa por el bienestar",
     description:
-      "Un recorrido por la historia del Club Deportivo Guadalajara.aasdasdafsfsdffsdfs",
-    date: "28/05/2025",
-    image: "/images/blog/chivas-vs-santos.webp",
-    slug: "/blog/historia-chivas",
+      "Chivas venció con autoridad a Mineros, dominando el partido de principio a fin con buen juego colectivo y contundencia ofensiva todo esto dentro de la Copa por el Bienestar.",
+    date: "29/05/2025",
+    image: "/images/blog/chivas-mineros-copa-bienestar.webp",
+    slug: "/blog/chivas-vs-mineros-copa-bienestar",
     type: "partidos",
+    typePosition: "top-2 right-2",
   },
 ];

@@ -13,18 +13,7 @@ import { blogEntries } from "@/content/blog";
         class="view-animate-[--subjectReveal] animate-zoom-in animate-range-[entry_0%_cover_20%] grid scroll-mt-[31rem] grid-cols-1 sm:grid-cols-2 gap-8 pt-10 sm:mt-4 md:scroll-mt-[34rem] lg:scroll-mt-[26rem] lg:grid-cols-6"
         id="info"
       >
-        {
-          blogEntries.map((entry) => (
-            <BlogCard
-              title={entry.title}
-              description={entry.description}
-              image={entry.image}
-              slug={entry.slug}
-              date={entry.date}
-              type={entry.type}
-            />
-          ))
-        }
+        {blogEntries.map((entry) => <BlogCard {...entry} />)}
       </div>
     </div>
   </div>
