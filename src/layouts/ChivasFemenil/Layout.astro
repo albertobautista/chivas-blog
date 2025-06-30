@@ -1,6 +1,4 @@
 ---
-import Header from "@/components/Header.astro";
-
 // import "@fontsource/poppins/400.css";
 // import "@fontsource/poppins/500.css";
 // import "@fontsource/poppins/600.css";
@@ -8,16 +6,19 @@ import Header from "@/components/Header.astro";
 // import "@fontsource/poppins/900.css";
 // import BackToTop from "@/components/BackToTop.astro"
 
-import "@/styles/global.css";
-import { ClientRouter } from "astro:transitions";
+import Header from "@/components/ChivasFemenil/Header.astro";
 
 interface Props {
   title?: string;
 }
 
+import "@/styles/global.css";
+import { ClientRouter } from "astro:transitions";
+
 const {
-  title = "Inicio - Página de aficionado del Club Deportivo Guadalajara",
+  title = "Inicio - Página de aficionado del Club Deportivo Guadalajara Femenil",
 } = Astro.props;
+
 const preloadImg = "/images/hero.webp";
 ---
 
@@ -50,7 +51,6 @@ const preloadImg = "/images/hero.webp";
     />
     <meta name="twitter:image" content="/images/hero.webp" />
     <meta name="twitter:url" content="https://www.unchivahermanomas.com/" />
-
     <ClientRouter />
 
     <script type="application/ld+json">
@@ -92,7 +92,6 @@ const preloadImg = "/images/hero.webp";
       }
     </script>
   </head>
-
   <body class="w-screen overflow-x-hidden bg-gray-50">
     <Header />
     <slot />

@@ -17,7 +17,11 @@ import HeaderLink, { Device, Target } from "@/components/HeaderLink.astro";
             href="/#jugadores"
             device={Device.DESKTOP}
           />
-          <HeaderLink text="Blog" href="/blog" device={Device.DESKTOP} />
+          <HeaderLink
+            text="Blog"
+            href="/chivas-femenil/blog"
+            device={Device.DESKTOP}
+          />
         </div>
         <div class="flex ml-auto gap-x-4">
           <HeaderLink
@@ -194,7 +198,7 @@ import HeaderLink, { Device, Target } from "@/components/HeaderLink.astro";
 </script>
 
 <style>
-  @reference "../styles/global.css";
+  @reference "../../styles/global.css";
 
   header {
     @apply border-b border-b-transparent;

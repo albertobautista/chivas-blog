@@ -1,4 +1,9 @@
 export interface ScheduleMatch {
+  varonil: Season[];
+  femenil: Season[];
+}
+
+export interface Season {
   home: {
     name: string;
     logo: string;
