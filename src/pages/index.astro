@@ -3,10 +3,16 @@ import BlogList from "@/sections/BlogList.astro";
 import Layout from "../layouts/Layout.astro";
 import Hero from "@/sections/Hero.astro";
 import Schedule from "@/sections/Schedule.astro";
+import ScheduleF from "@/sections/ChivasFemenil/Schedule.astro";
 ---
 
 <Layout title="Inicio">
   <Hero />
   <BlogList />
-  <Schedule />
+  <div class="px-6 pb-24 mx-auto max-w-7xl lg:px-8">
+    <Schedule />
+  </div>
+  <div class="px-6 pb-24 mx-auto max-w-7xl lg:px-8">
+    <ScheduleF />
+  </div>
 </Layout>
