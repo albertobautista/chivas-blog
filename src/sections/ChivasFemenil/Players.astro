@@ -1,38 +1,14 @@
 ---
+import PlayerModal from "@/components/ChivasFemenil/PlayerModal.tsx";
 import { players } from "@/content/playersf";
+import type { PlayersByPosition } from "@/types/player";
 
-const posiciones = ["Portero", "Defensa", "Mediocampista", "Delantero"];
+const position = ["Portero", "Defensa", "Mediocampista", "Delantero"];
 
-const jugadoresPorPosicion = posiciones.map((pos) => ({
-  posicion: pos,
-  jugadores: players.filter((j) => j.position === pos),
+const playersByPosition: PlayersByPosition[] = position.map((pos) => ({
+  position: pos,
+  players: players.filter((j) => j.position === pos),
 }));
 ---
 
-<div class="px-4 py-10 mx-auto space-y-16 max-w-7xl">
-  {
-    jugadoresPorPosicion.map(({ posicion, jugadores }) => (
-      <section>
-        <h2 class="pb-2 mb-6 text-2xl font-bold text-[#a80060] border-b border-gray-300">
-          {posicion}s
-        </h2>
-        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-          {jugadores.map((jugador) => (
-            <div class="overflow-hidden transition bg-white shadow rounded-xl hover:shadow-lg">
-              <img
-                src={jugador.image}
-                alt={jugador.name}
-                class="object-cover w-full h-64"
-              />
-              <div class="p-4 text-center">
-                <h3 class="text-lg font-bold text-gray-800">{jugador.name}</h3>
-
-                <p class="mt-1 text-gray-400 text-md">#{jugador.number}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-    ))
-  }
-</div>
+<PlayerModal client:load playersByPosition={playersByPosition} />

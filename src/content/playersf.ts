@@ -1,9 +1,19 @@
-export const players = [
+import type { Player } from "@/types/player";
+
+export const players: Player[] = [
   {
     name: "Blanca Félix",
     position: "Portero",
     number: 12,
     image: "/images/players/chivas-femenil/blanca-felix.png",
+    stats: {
+      appearances: 20,
+      goals: 0,
+      assists: 0,
+      yellowCards: 1,
+      redCards: 0,
+      minutesPlayed: 1800,
+    },
   },
   {
     name: "Celeste Espino",
