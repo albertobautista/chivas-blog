@@ -2,7 +2,7 @@
 import HeaderLink, { Device, Target } from "@/components/HeaderLink.astro";
 ---
 
-<header class="fixed top-0 w-screen animate-blur-header z-60">
+<header class="fixed top-0 w-screen animate-blur-header z-60 end-state">
   <nav
     class="flex items-center justify-between max-w-6xl px-4 py-6 pb-0 mx-auto uppercase lg:px-8"
     aria-label="Global"
@@ -10,7 +10,7 @@ import HeaderLink, { Device, Target } from "@/components/HeaderLink.astro";
     <div class="flex w-full">
       <div class="items-center hidden w-full lg:flex lg:gap-x-12">
         <div class="flex gap-x-8">
-          <HeaderLink text="Inicio" href="/#inicio" device={Device.DESKTOP} />
+          <HeaderLink text="Inicio" href="/" device={Device.DESKTOP} />
           <HeaderLink text="Noticias" href="/#blog" device={Device.DESKTOP} />
           <HeaderLink
             text="Jugadores"
@@ -62,7 +62,7 @@ import HeaderLink, { Device, Target } from "@/components/HeaderLink.astro";
     </div>
   </nav>
   <dialog
-    class="bg-primary z-50 max-h-[80vh] w-full max-w-full translate-x-0 transition-discrete duration-300 lg:hidden starting:-translate-x-full [&:not([open])]:-translate-x-full"
+    class="bg-[#a80060] z-50 max-h-[80vh] w-full max-w-full translate-x-0 transition-discrete duration-300 lg:hidden starting:-translate-x-full [&:not([open])]:-translate-x-full"
     id="mobile-menu"
     role="dialog"
     aria-modal="true"
@@ -94,17 +94,29 @@ import HeaderLink, { Device, Target } from "@/components/HeaderLink.astro";
         </div>
       </div>
       <div class="mt-6 space-y-2">
-        <HeaderLink text="Inicio" href="/#inicio" device={Device.MOBILE} />
+        <HeaderLink text="Inicio" href="/" device={Device.MOBILE} />
         <HeaderLink text="Noticias" href="/#blog" device={Device.MOBILE} />
-        <HeaderLink text="Jugadores" href="/#faq" device={Device.MOBILE} />
+        <HeaderLink
+          text="Jugadores"
+          href="/chivas-femenil/jugadores"
+          device={Device.MOBILE}
+        />
+        <HeaderLink
+          text="Chivas Varonil"
+          href="/chivas"
+          device={Device.MOBILE}
+        />
+        <HeaderLink
+          text="Chivas Femenil"
+          href="/chivas-femenil"
+          device={Device.MOBILE}
+        />
       </div>
     </div>
   </dialog>
 </header>
 
 <div id="backdrop"></div>
-
-<div data-target class="absolute top-[150px]"></div>
 
 <script>
   // Get the menu elements
@@ -143,58 +155,6 @@ import HeaderLink, { Device, Target } from "@/components/HeaderLink.astro";
   });
 
   mobileItems?.forEach((item) => item.addEventListener("click", toggleMenu));
-
-  const target = document.querySelector("[data-target]");
-  const header = document.querySelector("header");
-  const ticketsButton = document.getElementById("tickets-button");
-
-  const handleIntersection = ([entry]: IntersectionObserverEntry[]) => {
-    if (entry.isIntersecting) {
-      ticketsButton?.classList.add(
-        "from-[#ff0695]",
-        "via-[#ff99d1]",
-        "to-[#ff0695]",
-        "shadow-[#ff0695]/30",
-        "hover:shadow-[#ff0695]/40"
-      );
-      ticketsButton?.classList.remove(
-        "from-[#383acf]",
-        "via-[#8688ff]",
-        "to-[#383acf]",
-        "shadow-[#383acf]/30",
-        "hover:shadow-[#383acf]/40"
-      );
-      header?.classList.remove("end-state");
-    } else {
-      ticketsButton?.classList.remove(
-        "from-[#ff0695]",
-        "via-[#ff99d1]",
-        "to-[#ff0695]",
-        "shadow-[#ff0695]/30",
-        "hover:shadow-[#ff0695]/40"
-      );
-      ticketsButton?.classList.add(
-        "from-[#383acf]",
-        "via-[#8688ff]",
-        "to-[#383acf]",
-        "shadow-[#383acf]/30",
-        "hover:shadow-[#383acf]/40"
-      );
-      header?.classList.add("end-state");
-    }
-  };
-
-  const createObserver = (
-    target: Element,
-    callback: IntersectionObserverCallback
-  ) => {
-    const observer = new IntersectionObserver(callback, { threshold: 0.5 });
-    observer.observe(target);
-  };
-
-  if (target) {
-    createObserver(target, handleIntersection);
-  }
 </script>
 
 <style>
@@ -209,7 +169,7 @@ import HeaderLink, { Device, Target } from "@/components/HeaderLink.astro";
   }
 
   .end-state {
-    @apply bg-primary/60 border-b-[#b50066] pb-6 backdrop-blur-md;
+    @apply bg-[#a80060]/60 border-b-[#a80060] pb-6 backdrop-blur-md;
   }
 
   #backdrop {
