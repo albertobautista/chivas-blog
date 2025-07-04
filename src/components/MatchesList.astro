@@ -12,54 +12,66 @@ const isChivas = (teamName: string) =>
   teamName.toLowerCase().includes("chivas");
 ---
 
-<div class="pt-10 overflow-x-auto whitespace-nowrap">
-  <div class="flex gap-4">
-    {
-      matches.map((match) => (
-        <div class="relative min-w-[280px] bg-white rounded-lg shadow border border-gray-200 p-4 flex flex-col items-center">
-          <div
-            class={`absolute z-10 px-2 py-1 text-xs font-bold text-white rounded-sm shadow-sm ${isChivas(match.home.name) ? "bg-primary" : "bg-theme-blue"} top-2 left-2`}
-          >
-            {match.jornada}
-          </div>
+<div>
+  <div class="pt-10 overflow-x-auto whitespace-nowrap">
+    <div class="flex gap-4">
+      {
+        matches.map((match) => (
+          <div class="relative min-w-[280px] bg-white rounded-lg shadow border border-gray-200 p-4 flex flex-col items-center">
+            <div
+              class={`absolute z-10 px-2 py-1 text-xs font-bold text-white rounded-sm shadow-sm ${isChivas(match.home.name) ? "bg-primary" : "bg-theme-blue"} top-2 left-2`}
+            >
+              {match.jornada}
+            </div>
 
-          <div class="flex items-center justify-between w-full mt-5 mb-4">
-            <Image
-              src={match.home.logo}
-              alt={match.home.name}
-              class={`w-auto ${
-                isChivas(match.home.name)
-                  ? "h-20"
-                  : "h-16 rotate-180 opacity-80"
-              } transition-transform duration-300`}
-              width={200}
-              height={200}
-            />
-            <span class="text-sm font-semibold text-gray-700">VS</span>
-            <Image
-              src={match.away.logo}
-              alt={match.away.name}
-              class={`w-auto ${
-                isChivas(match.away.name)
-                  ? "h-20"
-                  : "h-16 rotate-180 opacity-80"
-              } transition-transform duration-300`}
-              width={200}
-              height={200}
-            />
-          </div>
+            <div class="flex items-center justify-between w-full mt-5 mb-4">
+              <Image
+                src={match.home.logo}
+                alt={match.home.name}
+                class={`w-auto ${
+                  isChivas(match.home.name)
+                    ? "h-20"
+                    : "h-16 rotate-180 opacity-80"
+                } transition-transform duration-300`}
+                width={200}
+                height={200}
+              />
+              <span class="text-sm font-semibold text-gray-700">VS</span>
+              <Image
+                src={match.away.logo}
+                alt={match.away.name}
+                class={`w-auto ${
+                  isChivas(match.away.name)
+                    ? "h-20"
+                    : "h-16 rotate-180 opacity-80"
+                } transition-transform duration-300`}
+                width={200}
+                height={200}
+              />
+            </div>
 
-          <div class="text-sm text-center text-gray-500">
-            <p>
-              <span class="font-medium">{match.date}</span>
-            </p>
-            <p>
-              <span class="font-bold text-gray-900">{match.time}</span> /{" "}
-              {match.stadium}
-            </p>
+            <div class="text-sm text-center text-gray-500">
+              <p>
+                <span class="font-medium">{match.date}</span>
+              </p>
+              <p>
+                <span class="font-bold text-gray-900">{match.time}</span>
+                {match.stadium}
+              </p>
+            </div>
           </div>
-        </div>
-      ))
-    }
+        ))
+      }
+    </div>
+  </div>
+  <div class="flex flex-col w-full gap-1 mt-2">
+    <div class="flex items-center gap-1">
+      <div class="bg-primary w-[20px] h-2.5 rounded-sm"></div>
+      <p class="text-xs">Local</p>
+    </div>
+    <div class="flex items-center gap-1">
+      <div class="bg-theme-blue w-[20px] h-2.5 rounded-sm"></div>
+      <p class="text-xs">Visitante</p>
+    </div>
   </div>
 </div>
