@@ -13,6 +13,7 @@ export interface Player {
   number: number;
   image: string;
   stats?: PlayerStats;
+  slug?: string;
 }
 
 export interface PlayersByPosition {

@@ -1,5 +1,5 @@
 ---
-import PlayerModal from "@/components/PlayerModal.tsx";
+import PlayerModal from "@/components/PlayerModal.astro";
 import { players } from "@/content/players";
 import type { PlayersByPosition } from "@/types/player";
 
@@ -11,4 +11,4 @@ const playersByPosition: PlayersByPosition[] = position.map((pos) => ({
 }));
 ---
 
-<PlayerModal client:load playersByPosition={playersByPosition} />
+<PlayerModal playersByPosition={playersByPosition} />

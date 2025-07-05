@@ -1,0 +1,77 @@
+---
+import { players } from "@/content/players";
+import Layout from "@/layouts/Layout.astro";
+import Hero from "@/sections/Hero.astro";
+
+import PlayerDetails from "@/components/PlayerDetails.astro";
+import { Image } from "astro:assets";
+
+export async function getStaticPaths() {
+  console.log("Generating static paths for players...", players);
+  return players.map((player) => ({
+    params: { slug: player.slug },
+    props: { player },
+  }));
+}
+
+const { player } = Astro.props;
+const { image, name, number, position, slug, stats } = player;
+---
+
+<Layout title={`${name}`}>
+  <div class="mt-20">
+    <div
+      class="w-full max-w-md p-6 mx-auto text-center bg-white shadow-xl rounded-2xl"
+    >
+      <a href="/chivas/jugadores" class="hover:underline opacity-70"
+        >← Volver atrás</a
+      >
+      <Image
+        src={image}
+        alt={name}
+        width={400}
+        height={400}
+        class="object-contain w-full h-auto mb-4 bg-white rounded-lg shadow max-h-96"
+        loading="lazy"
+        transition:name={`img-${slug}`}
+      />
+      <h1 class="text-3xl font-bold text-[#a80060] mb-1">{name}</h1>
+      <p class="text-lg text-gray-600">#{number}</p>
+      <p class="mt-1 text-sm tracking-wide text-gray-500 uppercase">
+        {position}
+      </p>
+      {
+        stats && (
+          <div class="grid grid-cols-2 gap-4 mt-6 text-sm text-center text-gray-700">
+            <div>
+              <p class="text-lg font-bold text-primary">{stats.appearances}</p>
+              <p>Apariciones</p>
+            </div>
+            <div>
+              <p class="text-lg font-bold text-primary">
+                {stats.minutesPlayed}
+              </p>
+              <p>Minutos</p>
+            </div>
+            <div>
+              <p class="text-lg font-bold text-primary">{stats.goals}</p>
+              <p>Goles</p>
+            </div>
+            <div>
+              <p class="text-lg font-bold text-primary">{stats.assists}</p>
+              <p>Asistencias</p>
+            </div>
+            <div>
+              <p class="text-lg font-bold text-primary">{stats.yellowCards}</p>
+              <p>Amarillas</p>
+            </div>
+            <div>
+              <p class="text-lg font-bold text-primary">{stats.redCards}</p>
+              <p>Rojas</p>
+            </div>
+          </div>
+        )
+      }
+    </div>
+  </div>
+</Layout>

@@ -1,0 +1,33 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+  image: string;
+  name: string;
+  number: number;
+  position: string;
+  slug?: string;
+}
+
+const { image, name, number, position, slug } = Astro.props as Props;
+---
+
+<div
+  class="w-full max-w-md p-6 mx-auto text-center bg-white shadow-xl rounded-2xl"
+>
+  <a href="/chivas/jugadores" class="hover:underline opacity-70"
+    >← Volver atrás</a
+  >
+  <Image
+    src={image}
+    alt={name}
+    width={400}
+    height={400}
+    class="object-contain w-full h-auto mb-4 bg-white rounded-lg shadow max-h-96"
+    loading="lazy"
+    transition:name={`img-${slug}`}
+  />
+  <h1 class="text-3xl font-bold text-[#a80060] mb-1">{name}</h1>
+  <p class="text-lg text-gray-600">#{number}</p>
+  <p class="mt-1 text-sm tracking-wide text-gray-500 uppercase">{position}</p>
+</div>
